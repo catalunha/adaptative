@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/controllers.dart';
-import '../widgets/text1.dart';
 
 class SplashPageMedium extends StatelessWidget {
   const SplashPageMedium({super.key});

@@ -13,7 +13,6 @@ class IsarDb {
         TaskSchema,
       ],
       directory: dir.path,
-      inspector: true,
       name: 'isardb',
     );
   }

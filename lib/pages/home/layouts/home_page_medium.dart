@@ -25,28 +25,40 @@ class HomePageMedium extends StatelessWidget {
             case HomePageStateInitial():
               return const SizedBox();
             case HomePageStateLoading():
-              {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
-              }
+              return const Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
             case HomePageStateLoaded():
-              {
-                return const Center(
-                  child: Column(
-                    children: [
-                      Text1(),
-                      Text1(),
-                    ],
-                  ),
-                );
-              }
+              return BlocBuilder<HomePageController, HomePageState>(
+                builder: (context, state) {
+                  switch (state) {
+                    case HomePageStateInitial():
+                      return const SizedBox();
+                    case HomePageStateLoading():
+                      return const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      );
+                    case HomePageStateLoaded():
+                      return Center(child: Text(state.tasks.toString()));
+                    case HomePageStateError():
+                      return Center(
+                        child: Text(state.error ?? ''),
+                      );
+                  }
+                },
+              );
+            // return const Center(
+            //   child: Column(
+            //     children: [
+            //       Text1(),
+            //       Text1(),
+            //     ],
+            //   ),
+            // );
             case HomePageStateError():
-              {
-                return Center(
-                  child: Text(state.error ?? ''),
-                );
-              }
+              return Center(
+                child: Text(state.error ?? ''),
+              );
           }
         },
       ),
