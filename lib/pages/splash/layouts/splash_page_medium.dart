@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:adaptative/pages/splash/controller/states.dart';
+import 'package:adaptative/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,13 +16,13 @@ class SplashPageMedium extends StatelessWidget {
     log('SplashPageMedium.build');
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Medium'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Medium'),
+      // ),
       body: BlocConsumer<SplashPageController, SplashPageState>(
         listener: (context, state) {
           if (state is SplashPageStateLoaded) {
-            print('enviar para outra tela');
+            Navigator.of(context).pushReplacementNamed(RouteName.home);
           }
         },
         builder: (context, state) {
@@ -29,28 +30,15 @@ class SplashPageMedium extends StatelessWidget {
             case SplashPageStateInitial():
               return const SizedBox();
             case SplashPageStateLoading():
-              {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
-              }
+              return const Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
             case SplashPageStateLoaded():
-              {
-                return const Center(
-                  child: Column(
-                    children: [
-                      Text1(),
-                      Text1(),
-                    ],
-                  ),
-                );
-              }
+              return const Center(child: Text('Carregamento finalizado.'));
             case SplashPageStateError():
-              {
-                return Center(
-                  child: Text(state.error ?? ''),
-                );
-              }
+              return Center(
+                child: Text(state.error ?? ''),
+              );
           }
         },
       ),
