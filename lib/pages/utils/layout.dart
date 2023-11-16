@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class Layout extends StatelessWidget {
@@ -16,7 +18,8 @@ class Layout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        print('constraints.maxWidth: ${constraints.maxWidth}');
+        log('Layout.build');
+        log('constraints.maxWidth: ${constraints.maxWidth}');
         if (constraints.maxWidth < 350) {
           return small;
         }

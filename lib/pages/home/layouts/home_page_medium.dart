@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:adaptative/pages/home/controller/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,24 +12,48 @@ class HomePageMedium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<HomePageController>();
-    return BlocConsumer<HomePageController, HomePageState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Medium'),
-          ),
-          body: const Center(
-            child: Column(
-              children: [
-                Text1(),
-                Text1(),
-              ],
-            ),
-          ),
-        );
-      },
+    log('HomePageMedium.build');
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Medium'),
+      ),
+      body: BlocConsumer<HomePageController, HomePageState>(
+        listener: (context, state) {
+          if (state is HomePageStateLoaded) {
+            print('enviar para outra tela');
+          }
+        },
+        builder: (context, state) {
+          switch (state) {
+            case HomePageStateInitial():
+              return const SizedBox();
+            case HomePageStateLoading():
+              {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              }
+            case HomePageStateLoaded():
+              {
+                return const Center(
+                  child: Column(
+                    children: [
+                      Text1(),
+                      Text1(),
+                    ],
+                  ),
+                );
+              }
+            case HomePageStateError():
+              {
+                return Center(
+                  child: Text(state.error ?? ''),
+                );
+              }
+          }
+        },
+      ),
     );
   }
 }

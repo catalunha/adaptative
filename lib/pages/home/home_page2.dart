@@ -7,16 +7,14 @@ import 'package:adaptative/pages/home/layouts/home_page_small.dart';
 import 'package:adaptative/pages/utils/layout.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  final HomePageController homePageController;
-  const HomePage({
+class HomePage2 extends StatelessWidget {
+  const HomePage2({
     super.key,
-    required this.homePageController,
   });
 
   @override
   Widget build(BuildContext context) {
-    log('HomePage.build');
+    log('HomePage2.build');
     return const Layout(
       small: HomePageSmall(),
       medium: HomePageMedium(),
