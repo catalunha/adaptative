@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/text1.dart';
 
-class HomePageSmall extends StatelessWidget {
-  const HomePageSmall({super.key});
+class SplashPageSmall extends StatelessWidget {
+  const SplashPageSmall({super.key});
 
   @override
   Widget build(BuildContext context) {

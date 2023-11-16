@@ -1,4 +1,4 @@
-import 'package:adaptative/pages/home/home_route.dart';
+import 'package:adaptative/pages/splash/splash_route.dart';
 import 'package:flutter/material.dart';
 
 sealed class Routes {
@@ -6,7 +6,7 @@ sealed class Routes {
     WidgetBuilder builder;
     switch (settings.name) {
       case '/':
-        builder = HomeRoute().page;
+        builder = SplashRoute().page;
         break;
       default:
         throw Exception('Rota não encontrada');

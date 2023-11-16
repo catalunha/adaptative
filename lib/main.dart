@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/home/home_page.dart';
+import 'pages/splash/splash_page.dart';
 import 'routes.dart';
 
 void main() {

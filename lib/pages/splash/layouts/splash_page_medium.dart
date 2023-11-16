@@ -1,40 +1,40 @@
 import 'dart:developer';
 
-import 'package:adaptative/pages/home/controller/states.dart';
+import 'package:adaptative/pages/splash/controller/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/controllers.dart';
 import '../widgets/text1.dart';
 
-class HomePageMedium extends StatelessWidget {
-  const HomePageMedium({super.key});
+class SplashPageMedium extends StatelessWidget {
+  const SplashPageMedium({super.key});
 
   @override
   Widget build(BuildContext context) {
-    log('HomePageMedium.build');
+    log('SplashPageMedium.build');
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Medium'),
       ),
-      body: BlocConsumer<HomePageController, HomePageState>(
+      body: BlocConsumer<SplashPageController, SplashPageState>(
         listener: (context, state) {
-          if (state is HomePageStateLoaded) {
+          if (state is SplashPageStateLoaded) {
             print('enviar para outra tela');
           }
         },
         builder: (context, state) {
           switch (state) {
-            case HomePageStateInitial():
+            case SplashPageStateInitial():
               return const SizedBox();
-            case HomePageStateLoading():
+            case SplashPageStateLoading():
               {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),
                 );
               }
-            case HomePageStateLoaded():
+            case SplashPageStateLoaded():
               {
                 return const Center(
                   child: Column(
@@ -45,7 +45,7 @@ class HomePageMedium extends StatelessWidget {
                   ),
                 );
               }
-            case HomePageStateError():
+            case SplashPageStateError():
               {
                 return Center(
                   child: Text(state.error ?? ''),
