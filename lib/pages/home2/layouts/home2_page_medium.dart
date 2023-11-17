@@ -27,10 +27,6 @@ class _Home2PageMediumState extends State<Home2PageMedium>
         title: const Text("Lista de ToDo's em LMedium2"),
       ),
       body: BlocListener<Home2PageController, Home2PageState>(
-        listenWhen: (previous, current) {
-          log('Listener.runtimeType ${previous.runtimeType} - ${current.runtimeType}');
-          return previous.runtimeType != current.runtimeType;
-        },
         listener: (context, state) async {
           log('Listener...');
           log('Listener.state ${state.runtimeType}');
@@ -41,13 +37,16 @@ class _Home2PageMediumState extends State<Home2PageMedium>
             case Home2PageStatus.loading:
               log('Listener Loading');
               showLoader(context);
+              break;
             case Home2PageStatus.loaded:
               log('Listener Loaded');
               hideLoader(context);
+              break;
             case Home2PageStatus.error:
               log('Listener Error');
               hideLoader(context);
               showMessageError(context, state.statusMessage);
+              break;
           }
         },
         child: Column(
