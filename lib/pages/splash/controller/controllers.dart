@@ -10,7 +10,7 @@ class SplashPageController extends Cubit<SplashPageState> {
   Future<void> loading() async {
     log('+++ SplashPageController.loading');
     emit(SplashPageStateLoading());
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     // emit(SplashPageStateError(error: 'Falha ao carregar'));
     emit(SplashPageStateLoaded());
     log('--- SplashPageController.loading');

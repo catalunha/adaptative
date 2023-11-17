@@ -7,6 +7,7 @@ import '../../utils/app_loader.dart';
 import '../../utils/app_messages.dart';
 import '../controller/controllers.dart';
 import '../controller/states.dart';
+import '../widgets/task_list.dart';
 
 class HomePageMedium2 extends StatefulWidget {
   const HomePageMedium2({super.key});
@@ -69,25 +70,31 @@ class _HomePageMedium2State extends State<HomePageMedium2>
         },
         child: Column(
           children: [
-            BlocBuilder<HomePageController, HomePageState>(
-              buildWhen: (previous, current) {
-                log('BlocBuilder.buildWhen ${previous.runtimeType}-${current.runtimeType}');
-                return current is HomePageStateLoaded;
-              },
-              builder: (context, state) {
-                if (state is HomePageStateLoaded) {
-                  return Center(child: Text(state.tasks.toString()));
-                }
-                return const Center(
-                  child: Text('Iniciando...'),
-                );
-              },
-            ),
             ElevatedButton(
-                onPressed: () async {
-                  await context.read<HomePageController>().loading();
+              onPressed: () async {
+                await context.read<HomePageController>().loading();
+              },
+              child: const Text('Reloading...'),
+            ),
+            Flexible(
+              child: BlocBuilder<HomePageController, HomePageState>(
+                buildWhen: (previous, current) {
+                  log('BlocBuilder.buildWhen ${previous.runtimeType}-${current.runtimeType}');
+                  return current is HomePageStateLoaded;
                 },
-                child: const Text('Reloading...'))
+                builder: (context, state) {
+                  if (state is HomePageStateLoaded) {
+                    return TaskList(
+                      tasks: state.tasks,
+                    );
+                    // return Center(child: Text(state.tasks.toString()));
+                  }
+                  return const Center(
+                    child: Text('Iniciando...'),
+                  );
+                },
+              ),
+            ),
           ],
         ),
 

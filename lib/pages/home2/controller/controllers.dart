@@ -5,21 +5,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'states.dart';
 
-class HomePageController extends Cubit<HomePageState> {
+class Home2PageController extends Cubit<Home2PageState> {
   final TaskRepository _repository;
 
-  HomePageController({required TaskRepository repository})
+  Home2PageController({required TaskRepository repository})
       : _repository = repository,
-        super(HomePageStateInitial()) {
+        super(Home2PageState()) {
     loading();
   }
   Future<void> loading() async {
-    log('+++ HomePageController.loading');
-    emit(HomePageStateLoading());
+    log('+++ Home2PageController.loading');
+    emit(state.copyWith(status: Home2PageStatus.initial));
     await Future.delayed(const Duration(seconds: 2));
 
     final tasks = await _repository.list();
-    emit(HomePageStateLoaded(tasks: tasks));
-    log('--- HomePageController.loading');
+    emit(state.copyWith(status: Home2PageStatus.initial, tasks: tasks));
+    log('--- Home2PageController.loading');
   }
 }

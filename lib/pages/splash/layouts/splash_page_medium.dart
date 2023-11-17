@@ -21,7 +21,7 @@ class SplashPageMedium extends StatelessWidget {
       body: BlocConsumer<SplashPageController, SplashPageState>(
         listener: (context, state) {
           if (state is SplashPageStateLoaded) {
-            Navigator.of(context).pushReplacementNamed(RouteName.home);
+            Navigator.of(context).pushReplacementNamed(RouteName.home2);
           }
         },
         builder: (context, state) {
