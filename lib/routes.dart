@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/home/home_route.dart';
 import 'pages/home2/home2_route.dart';
+import 'pages/home3/home3_route.dart';
 
 sealed class Routes {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -17,6 +18,9 @@ sealed class Routes {
       case '/home2':
         builder = Home2Route().page;
         break;
+      case '/home3':
+        builder = Home3Route().page;
+        break;
       default:
         throw Exception('Rota não encontrada');
     }
@@ -28,4 +32,5 @@ class RouteName {
   static String splash = '/';
   static String home = '/home';
   static String home2 = '/home2';
+  static String home3 = '/home3';
 }

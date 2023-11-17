@@ -1,21 +1,21 @@
 import '../../../data/models/task.dart';
 
-sealed class HomePageState {}
+sealed class TaskListState {}
 
-final class HomePageStateInitial extends HomePageState {}
+final class TaskListStateInitial extends TaskListState {}
 
-final class HomePageStateLoading extends HomePageState {}
+final class TaskListStateLoading extends TaskListState {}
 
-final class HomePageStateLoaded extends HomePageState {
+final class TaskListStateLoaded extends TaskListState {
   final List<Task> tasks;
 
-  HomePageStateLoaded({required this.tasks});
+  TaskListStateLoaded({required this.tasks});
 }
 
-final class HomePageStateError extends HomePageState {
+final class TaskListStateError extends TaskListState {
   final String? error;
 
-  HomePageStateError({required this.error});
+  TaskListStateError({required this.error});
 }
 
 
