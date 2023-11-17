@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../utils/layout.dart';
 import 'layouts/home_page_large.dart';
 import 'layouts/home_page_medium.dart';
+import 'layouts/home_page_medium2.dart';
 import 'layouts/home_page_small.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Layout(
       small: HomePageSmall(),
-      medium: HomePageMedium(),
+      medium: HomePageMedium2(),
       large: HomePageLarge(),
     );
   }

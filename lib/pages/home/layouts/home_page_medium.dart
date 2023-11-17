@@ -16,8 +16,29 @@ class HomePageMedium extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medium'),
+        title: const Text("Lista de ToDo's em LMedium"),
       ),
+      body: Column(children: [
+        BlocBuilder<HomePageController, HomePageState>(
+          builder: (context, state) {
+            switch (state) {
+              case HomePageStateInitial():
+                return const SizedBox();
+              case HomePageStateLoading():
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              case HomePageStateLoaded():
+                return Center(child: Text(state.tasks.toString()));
+              case HomePageStateError():
+                return Center(
+                  child: Text(state.error ?? ''),
+                );
+            }
+          },
+        )
+      ]),
+      /*
       body: BlocConsumer<HomePageController, HomePageState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -62,6 +83,7 @@ class HomePageMedium extends StatelessWidget {
           }
         },
       ),
+      */
     );
   }
 }

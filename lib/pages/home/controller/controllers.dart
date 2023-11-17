@@ -16,6 +16,8 @@ class HomePageController extends Cubit<HomePageState> {
   Future<void> loading() async {
     log('+++ HomePageController.loading');
     emit(HomePageStateLoading());
+    await Future.delayed(const Duration(seconds: 6));
+
     final tasks = await _repository.list();
     emit(HomePageStateLoaded(tasks: tasks));
     log('--- HomePageController.loading');
