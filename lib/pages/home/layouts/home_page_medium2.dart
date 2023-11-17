@@ -33,6 +33,22 @@ class _HomePageMedium2State extends State<HomePageMedium2>
         listener: (context, state) async {
           log('Listener...');
           log('Listener.state ${state.runtimeType}');
+          switch (state) {
+            case HomePageStateInitial():
+              log('Listener Initial');
+              break;
+            case HomePageStateLoading():
+              log('Listener Loading');
+              showLoader(context);
+            case HomePageStateLoaded():
+              log('Listener Loaded');
+              hideLoader(context);
+            case HomePageStateError():
+              log('Listener Error');
+              hideLoader(context);
+              showMessageError(context, state.error ?? '...');
+          }
+          /*
           if (state is HomePageStateInitial) {
             log('Listener Initial');
           }
@@ -49,6 +65,7 @@ class _HomePageMedium2State extends State<HomePageMedium2>
             log('Listener Loading');
             showLoader(context);
           }
+          */
         },
         child: Column(
           children: [
