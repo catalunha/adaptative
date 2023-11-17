@@ -12,4 +12,16 @@ class TaskRepositoryImpl implements TaskRepository {
     final tasks = await database.tasks.where().findAll();
     return tasks;
   }
+
+  @override
+  Future<bool> upsert(Task task) async {
+    final taskUpsert = await database.writeTxn(() => database.tasks.put(task));
+    return taskUpsert != 0;
+  }
+
+  @override
+  Future<bool> detele(int id) async {
+    final taskUpsert = await database.writeTxn(() => database.tasks.delete(id));
+    return taskUpsert;
+  }
 }

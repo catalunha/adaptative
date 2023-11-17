@@ -1,4 +1,3 @@
-import 'package:adaptative/pages/home3/controller/controllers.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/layout.dart';
@@ -7,8 +6,9 @@ import 'layouts/home3_page_medium.dart';
 import 'layouts/home3_page_small.dart';
 
 class Home3Page extends StatelessWidget {
-  final TaskListController taskListController;
-  const Home3Page({super.key, required this.taskListController});
+  const Home3Page({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

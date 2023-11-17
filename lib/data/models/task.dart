@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:isar/isar.dart';
+
 part 'task.g.dart';
 
 @Collection()
@@ -12,7 +14,7 @@ class Task {
     this.id,
     required this.title,
     required this.description,
-    required this.status,
+    this.status = false,
   });
 
   Task copyWith({

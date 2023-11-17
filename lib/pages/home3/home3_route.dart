@@ -26,9 +26,7 @@ class Home3Route {
           ),
         )
       ],
-      builder: (context, child) => Home3Page(
-        taskListController: context.read<TaskListController>(),
-      ),
+      builder: (context, child) => const Home3Page(),
     );
   }
 }
