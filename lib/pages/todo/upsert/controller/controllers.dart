@@ -14,7 +14,7 @@ class TaskController extends Cubit<TaskState> {
     required this.task,
   })  : _repository = repository,
         super(TaskStateInitial(task: task));
-  Future<void> create({
+  Future<void> upsert({
     required String title,
     required String description,
   }) async {

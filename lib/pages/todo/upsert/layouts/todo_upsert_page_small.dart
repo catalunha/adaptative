@@ -87,7 +87,7 @@ class _TodoUpsertPageSmallState extends State<TodoUpsertPageSmall> {
                                       onPressed: () async {
                                         await context
                                             .read<TaskController>()
-                                            .create(
+                                            .upsert(
                                               title: title.text,
                                               description: description.text,
                                             );
