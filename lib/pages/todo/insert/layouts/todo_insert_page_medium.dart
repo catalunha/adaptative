@@ -1,10 +1,10 @@
-import 'package:adaptative/pages/todo/insert/widgets/save_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../list/controller/controllers.dart';
 import '../controller/controllers.dart';
 import '../controller/states.dart';
+import '../widgets/save_medium_widget.dart';
 
 class TodoInsertPageMedium extends StatefulWidget {
   const TodoInsertPageMedium({super.key});
@@ -29,6 +29,8 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
       listener: (context, state) {
         if (state is TaskStateLoaded) {
           context.read<TaskListController>().loading();
+          title.text = '';
+          description.text = '';
         }
       },
       child: Center(
@@ -62,12 +64,12 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
                   builder: (context, state) {
                     switch (state) {
                       case TaskStateInitial():
-                        return SaveWidget(
+                        return SaveMediumWidget(
                             title: title, description: description);
                       case TaskStateLoading():
                         return const Center(child: CircularProgressIndicator());
                       case TaskStateLoaded():
-                        return SaveWidget(
+                        return SaveMediumWidget(
                             title: title, description: description);
                       case TaskStateError():
                         return Center(

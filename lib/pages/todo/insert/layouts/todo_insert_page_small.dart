@@ -1,8 +1,12 @@
+import 'package:adaptative/pages/todo/insert/widgets/form_description_widget.dart';
+import 'package:adaptative/pages/todo/insert/widgets/form_title_widget.dart';
+import 'package:adaptative/pages/todo/insert/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/controllers.dart';
 import '../controller/states.dart';
+import '../widgets/save_small_widget.dart';
 
 class TodoInsertPageSmall extends StatefulWidget {
   const TodoInsertPageSmall({super.key});
@@ -38,54 +42,17 @@ class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('Criar um ToDo (TodoInsertPageSmall)'),
-                  TextFormField(
-                    controller: title,
-                    decoration: const InputDecoration(hintText: 'Titulo'),
-                  ),
+                  const TitleWidget(),
+                  FormTitleWidget(title: title),
                   const SizedBox(height: 20),
-                  TextFormField(
-                    controller: description,
-                    decoration: const InputDecoration(hintText: 'Descrição'),
-                  ),
+                  FormDescriptionWidget(description: description),
                   const SizedBox(height: 20),
                   BlocBuilder<TaskInsertCubit, TaskState>(
                     builder: (context, state) {
                       switch (state) {
                         case TaskStateInitial():
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  SizedBox(
-                                    width: 100,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop(false);
-                                      },
-                                      child: const Text('Voltar'),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 100,
-                                    child: ElevatedButton(
-                                      onPressed: () async {
-                                        await context
-                                            .read<TaskInsertCubit>()
-                                            .insert(
-                                              title: title.text,
-                                              description: description.text,
-                                            );
-                                      },
-                                      child: const Text('Save'),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          );
+                          return SaveSmallWidget(
+                              title: title, description: description);
                         case TaskStateLoading():
                           return const Center(
                               child: CircularProgressIndicator());
