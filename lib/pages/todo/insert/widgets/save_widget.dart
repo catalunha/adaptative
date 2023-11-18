@@ -2,8 +2,8 @@ import 'package:adaptative/pages/todo/insert/controller/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SaveMediumWidget extends StatelessWidget {
-  const SaveMediumWidget({
+class SaveWidget extends StatelessWidget {
+  const SaveWidget({
     super.key,
     required this.title,
     required this.description,

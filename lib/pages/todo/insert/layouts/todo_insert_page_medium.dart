@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../list/controller/controllers.dart';
 import '../controller/controllers.dart';
 import '../controller/states.dart';
-import '../widgets/save_medium_widget.dart';
+import '../widgets/form_description_widget.dart';
+import '../widgets/form_title_widget.dart';
+import '../widgets/save_widget.dart';
+import '../widgets/title_widget.dart';
 
 class TodoInsertPageMedium extends StatefulWidget {
   const TodoInsertPageMedium({super.key});
@@ -28,9 +31,9 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
     return BlocListener<TaskInsertCubit, TaskState>(
       listener: (context, state) {
         if (state is TaskStateLoaded) {
-          context.read<TaskListController>().loading();
           title.text = '';
           description.text = '';
+          context.read<TaskListController>().loading();
         }
       },
       child: Center(
@@ -45,16 +48,11 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Criar um ToDo (TodoInsertPageMedium)'),
-                    TextFormField(
-                      controller: title,
-                      decoration: const InputDecoration(hintText: 'Titulo'),
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
-                      controller: description,
-                      decoration: const InputDecoration(hintText: 'Descrição'),
-                    ),
+                    const TitleWidget(),
+                    FormTitleWidget(title: title),
+                    const SizedBox(height: 20),
+                    FormDescriptionWidget(description: description),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -64,12 +62,12 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
                   builder: (context, state) {
                     switch (state) {
                       case TaskStateInitial():
-                        return SaveMediumWidget(
+                        return SaveWidget(
                             title: title, description: description);
                       case TaskStateLoading():
                         return const Center(child: CircularProgressIndicator());
                       case TaskStateLoaded():
-                        return SaveMediumWidget(
+                        return SaveWidget(
                             title: title, description: description);
                       case TaskStateError():
                         return Center(

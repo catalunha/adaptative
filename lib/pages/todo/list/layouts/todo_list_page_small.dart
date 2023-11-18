@@ -36,7 +36,6 @@ class _TodoListPageSmallState extends State<TodoListPageSmall>
           // if (data != null) {
           //   context.read<TaskListController>().loading();
           // }
-          log('+++ showDialog');
           final isInsert = await showDialog(
             barrierDismissible: false,
             context: context,
@@ -44,8 +43,6 @@ class _TodoListPageSmallState extends State<TodoListPageSmall>
               return TodoInsertRoute().page(context);
             },
           );
-          log('--- showDialog');
-          log('$isInsert');
           if (mounted) {
             if (isInsert != null && isInsert) {
               context.read<TaskListController>().loading();

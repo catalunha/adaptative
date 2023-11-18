@@ -1,10 +1,21 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TodoListPageLarge extends StatelessWidget {
+import '../../insert/todo_insert_route.dart';
+import '../controller/controllers.dart';
+import '../controller/states.dart';
+import '../widgets/task_list.dart';
+
+class TodoListPageLarge extends StatefulWidget {
   const TodoListPageLarge({super.key});
 
+  @override
+  State<TodoListPageLarge> createState() => _TodoListPageLargeState();
+}
+
+class _TodoListPageLargeState extends State<TodoListPageLarge> {
   @override
   Widget build(BuildContext context) {
     log('TodoListPageMedium.build');
@@ -14,10 +25,43 @@ class TodoListPageLarge extends StatelessWidget {
         title: const Text("ToDo (TodoListPageLarge)"),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Column(
-          children: [],
-        ),
+      body: Column(
+        children: [
+          Card(
+              margin: const EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                child: const Text('Criar'),
+                onPressed: () async {
+                  final isInsert = await showModalBottomSheet(
+                    isDismissible: false,
+                    context: context,
+                    builder: (_) => TodoInsertRoute().page(context),
+                  );
+                  log('showModalBottomSheet: $isInsert');
+                  if (mounted) {
+                    if (isInsert != null && isInsert) {
+                      context.read<TaskListController>().loading();
+                    }
+                  }
+                },
+              )),
+          Flexible(
+            child: BlocBuilder<TaskListController, TaskListState>(
+              builder: (context, state) {
+                return switch (state) {
+                  TaskListStateInitial() => const SizedBox(),
+                  TaskListStateLoading() =>
+                    const Center(child: CircularProgressIndicator.adaptive()),
+                  TaskListStateLoaded() => TaskList(
+                      tasks: state.tasks,
+                    ),
+                  TaskListStateError() =>
+                    Center(child: Text(state.error ?? '')),
+                };
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/controllers.dart';
 import '../controller/states.dart';
-import '../widgets/save_small_widget.dart';
+import '../widgets/save_widget.dart';
 
 class TodoInsertPageSmall extends StatefulWidget {
   const TodoInsertPageSmall({super.key});
@@ -51,8 +51,25 @@ class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
                     builder: (context, state) {
                       switch (state) {
                         case TaskStateInitial():
-                          return SaveSmallWidget(
-                              title: title, description: description);
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                width: 100,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false);
+                                  },
+                                  child: const Text('Voltar'),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: SaveWidget(
+                                    title: title, description: description),
+                              )
+                            ],
+                          );
                         case TaskStateLoading():
                           return const Center(
                               child: CircularProgressIndicator());
