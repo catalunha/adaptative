@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/models/task.dart';
-import '../../../data/repositories/task_repository.dart';
-import '../../../data/repositories/task_repository_impl.dart';
+import 'package:adaptative/data/models/task.dart';
+import 'package:adaptative/data/repositories/task_repository.dart';
+import 'package:adaptative/data/repositories/task_repository_impl.dart';
 import 'controller/controllers.dart';
 import 'todo_upsert_page.dart';
 

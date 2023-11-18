@@ -17,8 +17,7 @@ class HomePageUnique extends StatelessWidget {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(RouteName.todoList);
+                  Navigator.of(context).pushNamed(RouteName.todoList);
                 },
                 child: const Text('Go to ToDo'))
           ],

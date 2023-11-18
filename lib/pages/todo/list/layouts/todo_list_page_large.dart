@@ -11,7 +11,7 @@ class TodoListPageLarge extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ToDo - List - Large"),
+        title: const Text("ToDo (TodoListPageLarge)"),
         centerTitle: true,
       ),
       body: const Center(

@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:adaptative/pages/todo/upsert/todo_upsert_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/app_loader.dart';
 import '../../../utils/app_messages.dart';
+import '../../insert/todo_insert_route.dart';
 import '../controller/controllers.dart';
 import '../controller/states.dart';
 import '../widgets/task_list.dart';
@@ -25,7 +25,7 @@ class _TodoListPageSmallState extends State<TodoListPageSmall>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ToDo - List - Small"),
+        title: const Text("ToDo (TodoListPageSmall)"),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -41,7 +41,7 @@ class _TodoListPageSmallState extends State<TodoListPageSmall>
             barrierDismissible: false,
             context: context,
             builder: (context) {
-              return TodoUpsertRoute().page(context, null);
+              return TodoInsertRoute().page(context);
             },
           );
           log('--- showDialog');
@@ -56,12 +56,6 @@ class _TodoListPageSmallState extends State<TodoListPageSmall>
       ),
       body: Column(
         children: [
-          // ElevatedButton(
-          //   onPressed: () async {
-          //     await context.read<TaskListController>().loading();
-          //   },
-          //   child: const Text('Reloading...'),
-          // ),
           Flexible(
             child: BlocBuilder<TaskListController, TaskListState>(
               builder: (context, state) {

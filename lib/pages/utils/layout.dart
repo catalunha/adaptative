@@ -16,18 +16,37 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
+    return Builder(
+      builder: (context) {
         log('Layout.build');
-        log('constraints.maxWidth: ${constraints.maxWidth}');
-        if (constraints.maxWidth < 600) {
+        final maxWidth = MediaQuery.of(context).size.width;
+        log('mediaWidth: $maxWidth');
+        if (maxWidth < 600) {
           return small;
         }
-        if (constraints.maxWidth < 900) {
+        if (maxWidth < 900) {
           return medium;
         }
         return large;
       },
     );
   }
+  //   @override
+  // Widget build(BuildContext context) {
+  //   return LayoutBuilder(
+  //     builder: (context, constraints) {
+  //       log('Layout.build');
+  //       log('constraints.maxWidth: ${constraints.maxWidth}');
+  //       final mediaWidth = MediaQuery.of(context).size.width;
+  //       log('mediaWidth: $mediaWidth');
+  //       if (constraints.maxWidth < 600) {
+  //         return small;
+  //       }
+  //       if (constraints.maxWidth < 900) {
+  //         return medium;
+  //       }
+  //       return large;
+  //     },
+  //   );
+  // }
 }

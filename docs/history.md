@@ -16,3 +16,24 @@ flutter pub add json_annotation
 flutter pub add dev:json_serializable
 
 flutter pub add dev:build_runner
+
+
+
+# Adaptative
+Splash
+  unique
+Home
+  unique
+ToDo
+  ToDoList
+    Small (lista)
+    Medium (insert/ lista)
+    Large (insert | lista)
+  ToDoInsert
+    Small (Dialog)
+    Medium (acima da lista)
+    Large (a esquerda da lista)
+  ToDoUpdate
+    Small (Dialog)
+    Medium (Dialog)
+    Large (showModalBottomSheet)
