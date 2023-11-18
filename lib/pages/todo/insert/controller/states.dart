@@ -1,3 +1,16 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'states.freezed.dart';
+
+@freezed
+sealed class TaskState with _$TaskState {
+  const factory TaskState.initial() = TaskStateInitial;
+  const factory TaskState.loading() = TaskStateLoading;
+  const factory TaskState.loaded() = TaskStateLoaded;
+  const factory TaskState.error({String? error}) = TaskStateError;
+}
+
+/*
 sealed class TaskState {}
 
 final class TaskStateInitial extends TaskState {}
@@ -11,3 +24,4 @@ final class TaskStateError extends TaskState {
 
   TaskStateError({required this.error});
 }
+*/
