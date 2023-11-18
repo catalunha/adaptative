@@ -1,8 +1,10 @@
 import 'package:adaptative/pages/splash/splash_route.dart';
 import 'package:flutter/material.dart';
 
+import 'data/models/task.dart';
 import 'pages/home/home_route.dart';
 import 'pages/todo/list/todo_list_route.dart';
+import 'pages/todo/update/todo_update_route.dart';
 
 sealed class Routes {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -17,9 +19,9 @@ sealed class Routes {
       case RouteName.todoList:
         builder = TodoListRoute().page;
         break;
-      // case RouteName.todoUpsert:
-      //   builder = TodoUpsertRoute().page;
-      //   break;
+      case RouteName.todoUpdate:
+        builder = (_) => TodoUpdateRoute().page(_, settings.arguments as Task);
+        break;
       default:
         throw Exception('Rota não encontrada');
     }
@@ -31,5 +33,5 @@ class RouteName {
   static const String splash = '/';
   static const String home = '/home';
   static const String todoList = '/todoList';
-  static const String todoUpsert = '/todoUpsert';
+  static const String todoUpdate = '/todoUpdate';
 }

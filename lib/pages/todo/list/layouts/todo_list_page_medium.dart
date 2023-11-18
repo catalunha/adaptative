@@ -22,7 +22,7 @@ class _TodoListPageMediumState extends State<TodoListPageMedium> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ToDo (TodoListPageMedium)"),
+        title: const Text("ToDo Listar (TodoListPageMedium)"),
         centerTitle: true,
       ),
       body: Column(

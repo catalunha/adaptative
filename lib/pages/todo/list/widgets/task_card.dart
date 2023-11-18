@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/models/task.dart';
+import '../../../../routes.dart';
 import '../../update/todo_update_route.dart';
 import '../controller/controllers.dart';
 
@@ -29,24 +30,36 @@ class _TaskCardState extends State<TaskCard> {
       subtitle: Text(widget.model.description),
       trailing: IconButton(
         onPressed: () async {
-          log('+++ showDialog');
-          final isInsert = await showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return TodoUpdateRoute().page(context, widget.model);
-            },
-          );
-          log('--- showDialog');
-          log('$isInsert');
+          final isUpdated = await Navigator.of(context)
+                  .pushNamed(RouteName.todoUpdate, arguments: widget.model)
+              as bool?;
+          log('isUpdated: $isUpdated');
           if (mounted) {
-            if (isInsert != null && isInsert) {
+            if (isUpdated != null && isUpdated) {
               context.read<TaskListController>().loading();
             }
           }
         },
         icon: const Icon(Icons.edit),
       ),
+      // trailing: IconButton(
+      //   onPressed: () async {
+      //     final isInsert = await showDialog(
+      //       barrierDismissible: false,
+      //       context: context,
+      //       builder: (context) {
+      //         return TodoUpdateRoute().page(context, widget.model);
+      //       },
+      //     );
+      //     log('$isInsert');
+      //     if (mounted) {
+      //       if (isInsert != null && isInsert) {
+      //         context.read<TaskListController>().loading();
+      //       }
+      //     }
+      //   },
+      //   icon: const Icon(Icons.edit),
+      // ),
     );
   }
 }

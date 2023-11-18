@@ -1,8 +1,12 @@
+import 'package:adaptative/pages/todo/update/widgets/form_description_widget.dart';
+import 'package:adaptative/pages/todo/update/widgets/form_title_widget.dart';
+import 'package:adaptative/pages/todo/update/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/controllers.dart';
 import '../controller/states.dart';
+import '../widgets/save_widget.dart';
 
 class TodoUpdatePageSmall extends StatefulWidget {
   const TodoUpdatePageSmall({super.key});
@@ -48,19 +52,10 @@ class _TodoUpdatePageSmallState extends State<TodoUpdatePageSmall> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (context.read<TaskUpdateCubit>().task != null)
-                    const Text('Editar ou apagar um ToDo2'),
-                  if (context.read<TaskUpdateCubit>().task == null)
-                    const Text('Criar um ToDo2'),
-                  TextFormField(
-                    controller: title,
-                    decoration: const InputDecoration(hintText: 'Titulo'),
-                  ),
+                  const TitleWidget(),
+                  FormTitleWidget(title: title),
                   const SizedBox(height: 20),
-                  TextFormField(
-                    controller: description,
-                    decoration: const InputDecoration(hintText: 'Descrição'),
-                  ),
+                  FormDescriptionWidget(description: description),
                   const SizedBox(height: 20),
                   BlocBuilder<TaskUpdateCubit, TaskState>(
                     builder: (context, state) {
@@ -83,29 +78,19 @@ class _TodoUpdatePageSmallState extends State<TodoUpdatePageSmall> {
                                   ),
                                   SizedBox(
                                     width: 100,
-                                    child: ElevatedButton(
-                                      onPressed: () async {
-                                        await context
-                                            .read<TaskUpdateCubit>()
-                                            .update(
-                                              title: title.text,
-                                              description: description.text,
-                                            );
-                                      },
-                                      child: const Text('Save'),
-                                    ),
+                                    child: SaveWidget(
+                                        title: title, description: description),
                                   )
                                 ],
                               ),
-                              if (context.read<TaskUpdateCubit>().task != null)
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    await context
-                                        .read<TaskUpdateCubit>()
-                                        .delete();
-                                  },
-                                  child: const Text('Delete'),
-                                ),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  await context
+                                      .read<TaskUpdateCubit>()
+                                      .delete();
+                                },
+                                child: const Text('Delete'),
+                              ),
                             ],
                           );
                         case TaskStateLoading():
@@ -115,29 +100,19 @@ class _TodoUpdatePageSmallState extends State<TodoUpdatePageSmall> {
                           return const SizedBox();
                         case TaskStateError():
                           return Center(
-                              child: Column(
-                            children: [
-                              Text(state.error ?? 'Oops. Erro sem msg'),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                child: const Text('Voltar'),
-                              ),
-                            ],
-                          ));
+                            child: Column(
+                              children: [
+                                Text(state.error ?? 'Oops. Erro sem msg'),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false);
+                                  },
+                                  child: const Text('Voltar'),
+                                ),
+                              ],
+                            ),
+                          );
                       }
-
-/*
-                      return ElevatedButton(
-                          onPressed: () async {
-                            await context.read<TaskUpdateCubit>().create(
-                                  title: title.text,
-                                  description: description.text,
-                                );
-                          },
-                          child: const Text('Save'));
-                          */
                     },
                   )
                 ],

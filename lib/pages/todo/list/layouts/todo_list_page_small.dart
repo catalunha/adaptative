@@ -25,17 +25,11 @@ class _TodoListPageSmallState extends State<TodoListPageSmall>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ToDo (TodoListPageSmall)"),
+        title: const Text("ToDo Listar (TodoListPageSmall)"),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // final data = await showModalBottomSheet(
-          //     context: context,
-          //     builder: (_) => TodoUpsertRoute().page(context));
-          // if (data != null) {
-          //   context.read<TaskListController>().loading();
-          // }
           final isInsert = await showDialog(
             barrierDismissible: false,
             context: context,

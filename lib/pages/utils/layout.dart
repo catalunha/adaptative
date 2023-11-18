@@ -21,6 +21,7 @@ class Layout extends StatelessWidget {
         log('Layout.build');
         final maxWidth = MediaQuery.of(context).size.width;
         log('mediaWidth: $maxWidth');
+
         if (maxWidth < 600) {
           return small;
         }

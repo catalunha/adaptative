@@ -7,6 +7,6 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('ToDo Criar (TodoInsertPageSmall)');
+    return const Text('ToDo Editar (TodoUpdatePageSmall)');
   }
 }
