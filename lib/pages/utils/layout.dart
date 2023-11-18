@@ -20,10 +20,10 @@ class Layout extends StatelessWidget {
       builder: (context, constraints) {
         log('Layout.build');
         log('constraints.maxWidth: ${constraints.maxWidth}');
-        if (constraints.maxWidth < 350) {
+        if (constraints.maxWidth < 600) {
           return small;
         }
-        if (constraints.maxWidth < 600) {
+        if (constraints.maxWidth < 900) {
           return medium;
         }
         return large;

@@ -5,11 +5,8 @@ class TodoUpsertPageLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
-      body: Container(),
+    return const Center(
+      child: Text('ToDo - Upsert - Large '),
     );
   }
 }

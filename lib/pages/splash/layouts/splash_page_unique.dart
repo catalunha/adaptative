@@ -7,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controller/controllers.dart';
 
-class SplashPageMedium extends StatelessWidget {
-  const SplashPageMedium({super.key});
+class SplashPageUnique extends StatelessWidget {
+  const SplashPageUnique({super.key});
 
   @override
   Widget build(BuildContext context) {
-    log('SplashPageMedium.build');
+    log('SplashPageUnique.build');
 
     return Scaffold(
       // appBar: AppBar(
@@ -21,7 +21,7 @@ class SplashPageMedium extends StatelessWidget {
       body: BlocConsumer<SplashPageController, SplashPageState>(
         listener: (context, state) {
           if (state is SplashPageStateLoaded) {
-            Navigator.of(context).pushReplacementNamed(RouteName.home3);
+            Navigator.of(context).pushReplacementNamed(RouteName.home);
           }
         },
         builder: (context, state) {

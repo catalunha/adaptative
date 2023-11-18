@@ -2,25 +2,24 @@ import 'package:adaptative/pages/splash/splash_route.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/home/home_route.dart';
-import 'pages/home2/home2_route.dart';
-import 'pages/home3/home3_route.dart';
+import 'pages/todo/list/todo_list_route.dart';
 
 sealed class Routes {
   static Route<dynamic> routes(RouteSettings settings) {
     WidgetBuilder builder;
     switch (settings.name) {
-      case '/':
+      case RouteName.splash:
         builder = SplashRoute().page;
         break;
-      case '/home':
+      case RouteName.home:
         builder = HomeRoute().page;
         break;
-      case '/home2':
-        builder = Home2Route().page;
+      case RouteName.todoList:
+        builder = TodoListRoute().page;
         break;
-      case '/home3':
-        builder = Home3Route().page;
-        break;
+      // case RouteName.todoUpsert:
+      //   builder = TodoUpsertRoute().page;
+      //   break;
       default:
         throw Exception('Rota não encontrada');
     }
@@ -29,8 +28,8 @@ sealed class Routes {
 }
 
 class RouteName {
-  static String splash = '/';
-  static String home = '/home';
-  static String home2 = '/home2';
-  static String home3 = '/home3';
+  static const String splash = '/';
+  static const String home = '/home';
+  static const String todoList = '/todoList';
+  static const String todoUpsert = '/todoUpsert';
 }

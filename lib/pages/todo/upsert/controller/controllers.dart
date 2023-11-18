@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:adaptative/data/models/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:isar/isar.dart';
 
 import '../../../../data/repositories/task_repository.dart';
 import 'states.dart';

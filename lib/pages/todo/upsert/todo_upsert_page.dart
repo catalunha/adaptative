@@ -14,7 +14,7 @@ class TodoUpsertPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Layout(
       small: TodoUpsertPageSmall(),
-      medium: TodoUpsertPageMedium(),
+      medium: TodoUpsertPageSmall(),
       large: TodoUpsertPageLarge(),
     );
   }

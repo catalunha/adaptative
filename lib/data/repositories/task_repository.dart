@@ -1,5 +1,3 @@
-import 'package:isar/isar.dart';
-
 import '../models/task.dart';
 
 abstract interface class TaskRepository {
