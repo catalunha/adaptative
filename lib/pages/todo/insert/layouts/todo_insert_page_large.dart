@@ -39,57 +39,59 @@ class _TodoInsertPageLargeState extends State<TodoInsertPageLarge> {
         child: Padding(
           padding:
               const EdgeInsets.only(left: 50, right: 30, top: 10, bottom: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: Column(
-                  // mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-
-                  children: [
-                    const TitleWidget(),
-                    FormTitleWidget(title: title),
-                    const SizedBox(height: 20),
-                    FormDescriptionWidget(description: description),
-                    const SizedBox(height: 20),
-                  ],
-                ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                icon: const Icon(Icons.arrow_back),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: BlocBuilder<TaskInsertCubit, TaskState>(
-                  builder: (context, state) {
-                    switch (state.status) {
-                      case TaskStateStatus.initial:
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SaveWidget(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: Column(
+                      // mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        const TitleWidget(),
+                        FormTitleWidget(title: title),
+                        const SizedBox(height: 20),
+                        FormDescriptionWidget(description: description),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: BlocBuilder<TaskInsertCubit, TaskState>(
+                      builder: (context, state) {
+                        switch (state.status) {
+                          case TaskStateStatus.initial:
+                            return SaveWidget(
                               title: title,
                               description: description,
-                            ),
-                            const SizedBox(height: 20),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop(false);
-                              },
-                              child: const Text('Cancelar'),
-                            ),
-                          ],
-                        );
-                      case TaskStateStatus.loading:
-                        return const Center(child: CircularProgressIndicator());
-                      case TaskStateStatus.loaded:
-                        return SaveWidget(
-                            title: title, description: description);
-                      case TaskStateStatus.error:
-                        return Center(
-                            child: Text(state.error ?? 'Oops. Erro sem msg'));
-                    }
-                  },
-                ),
+                            );
+                          case TaskStateStatus.loading:
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          case TaskStateStatus.loaded:
+                            return SaveWidget(
+                                title: title, description: description);
+                          case TaskStateStatus.error:
+                            return Center(
+                                child:
+                                    Text(state.error ?? 'Oops. Erro sem msg'));
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
