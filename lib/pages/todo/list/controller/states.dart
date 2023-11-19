@@ -1,19 +1,23 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../data/models/task.dart';
 
-sealed class TaskListState {}
+part 'states.freezed.dart';
 
-final class TaskListStateInitial extends TaskListState {}
+enum TaskListStateStatus { initial, loading, loaded, error }
 
-final class TaskListStateLoading extends TaskListState {}
-
-final class TaskListStateLoaded extends TaskListState {
-  final List<Task> tasks;
-
-  TaskListStateLoaded({required this.tasks});
+@freezed
+class TaskListState with _$TaskListState {
+  factory TaskListState({
+    @Default(TaskListStateStatus.initial) TaskListStateStatus status,
+    String? error,
+    @Default([]) List<Task> tasks,
+  }) = _TaskListState;
 }
 
-final class TaskListStateError extends TaskListState {
-  final String? error;
-
-  TaskListStateError({required this.error});
+extension TaskStateStatusIs on TaskListStateStatus {
+  bool get isInitial => this == TaskListStateStatus.initial;
+  bool get isLoading => this == TaskListStateStatus.loading;
+  bool get isLoaded => this == TaskListStateStatus.loaded;
+  bool get isError => this == TaskListStateStatus.error;
 }

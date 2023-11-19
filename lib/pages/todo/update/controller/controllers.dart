@@ -13,29 +13,29 @@ class TaskUpdateCubit extends Cubit<TaskState> {
     required TaskRepository repository,
     required this.task,
   })  : _repository = repository,
-        super(TaskStateInitial(task: task));
+        super(TaskState(task: task));
   Future<void> update({
     required String title,
     required String description,
   }) async {
     log('+++ TaskUpdateCubit.create');
-    emit(TaskStateLoading());
+    emit(state.copyWith(status: TaskStateStatus.loading));
     await Future.delayed(const Duration(seconds: 1));
     if (title.isNotEmpty) {
       await _repository
           .upsert(Task(id: task!.id, title: title, description: description));
     }
-    emit(TaskStateLoaded());
+    emit(state.copyWith(status: TaskStateStatus.loaded));
     // emit(TaskStateError(error: 'Algo deu errado'));
     log('--- TaskUpdateCubit.create');
   }
 
   Future<void> delete() async {
     log('+++ TaskUpdateCubit.delete');
-    emit(TaskStateLoading());
+    emit(state.copyWith(status: TaskStateStatus.loading));
     await Future.delayed(const Duration(seconds: 1));
     await _repository.detele(task!.id!);
-    emit(TaskStateLoaded());
+    emit(state.copyWith(status: TaskStateStatus.loaded));
     // emit(TaskStateError(error: 'Algo deu errado'));
     log('--- TaskUpdateCubit.delete');
   }

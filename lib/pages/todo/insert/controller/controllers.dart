@@ -34,18 +34,18 @@ class TaskInsertCubit extends Cubit<TaskState> {
   TaskInsertCubit({
     required TaskRepository repository,
   })  : _repository = repository,
-        super(const TaskStateInitial());
+        super(TaskState());
   Future<void> insert({
     required String title,
     required String description,
   }) async {
     log('+++ TaskInsertCubit.create');
-    emit(const TaskStateLoading());
+    emit(state.copyWith(status: TaskStateStatus.loading));
     await Future.delayed(const Duration(seconds: 1));
     if (title.isNotEmpty) {
       await _repository.upsert(Task(title: title, description: description));
     }
-    emit(const TaskStateLoaded());
+    emit(state.copyWith(status: TaskStateStatus.loaded));
     // emit(TaskStateError(error: 'Algo deu errado'));
     log('--- TaskInsertCubit.create');
   }

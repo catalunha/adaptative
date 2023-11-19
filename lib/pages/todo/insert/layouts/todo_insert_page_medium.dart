@@ -30,7 +30,7 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
   Widget build(BuildContext context) {
     return BlocListener<TaskInsertCubit, TaskState>(
       listener: (context, state) {
-        if (state is TaskStateLoaded) {
+        if (state.status.isLoaded) {
           title.text = '';
           description.text = '';
           context.read<TaskListController>().loading();
@@ -60,16 +60,16 @@ class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
                 padding: const EdgeInsets.all(20.0),
                 child: BlocBuilder<TaskInsertCubit, TaskState>(
                   builder: (context, state) {
-                    switch (state) {
-                      case TaskStateInitial():
+                    switch (state.status) {
+                      case TaskStateStatus.initial:
                         return SaveWidget(
                             title: title, description: description);
-                      case TaskStateLoading():
+                      case TaskStateStatus.loading:
                         return const Center(child: CircularProgressIndicator());
-                      case TaskStateLoaded():
+                      case TaskStateStatus.loaded:
                         return SaveWidget(
                             title: title, description: description);
-                      case TaskStateError():
+                      case TaskStateStatus.error:
                         return Center(
                             child: Text(state.error ?? 'Oops. Erro sem msg'));
                     }

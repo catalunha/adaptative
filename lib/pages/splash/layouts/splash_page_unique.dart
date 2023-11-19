@@ -20,21 +20,21 @@ class SplashPageUnique extends StatelessWidget {
       // ),
       body: BlocConsumer<SplashPageController, SplashPageState>(
         listener: (context, state) {
-          if (state is SplashPageStateLoaded) {
+          if (state.status.isLoaded) {
             Navigator.of(context).pushReplacementNamed(RouteName.home);
           }
         },
         builder: (context, state) {
-          switch (state) {
-            case SplashPageStateInitial():
+          switch (state.status) {
+            case SplashPageStateStatus.initial:
               return const SizedBox();
-            case SplashPageStateLoading():
+            case SplashPageStateStatus.loading:
               return const Center(
                 child: CircularProgressIndicator.adaptive(),
               );
-            case SplashPageStateLoaded():
+            case SplashPageStateStatus.loaded:
               return const Center(child: Text('Carregamento finalizado.'));
-            case SplashPageStateError():
+            case SplashPageStateStatus.error:
               return Center(
                 child: Text(state.error ?? ''),
               );

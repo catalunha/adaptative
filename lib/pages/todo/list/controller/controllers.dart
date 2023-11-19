@@ -11,22 +11,25 @@ class TaskListController extends Cubit<TaskListState> {
 
   TaskListController({required TaskRepository repository})
       : _repository = repository,
-        super(TaskListStateInitial()) {
+        super(TaskListState()) {
     loading();
   }
   Future<void> loading() async {
     log('+++ TaskListController.loading');
-    emit(TaskListStateLoading());
+    emit(state.copyWith(status: TaskListStateStatus.loading));
     // await Future.delayed(const Duration(seconds: 1));
 
     final tasks = await _repository.list();
-    emit(TaskListStateLoaded(tasks: tasks));
+    emit(state.copyWith(
+      status: TaskListStateStatus.loading,
+      tasks: tasks,
+    ));
     log('--- TaskListController.loading');
   }
 
   Future<void> update(Task task) async {
     log('+++ TaskListController.loading');
-    emit(TaskListStateLoading());
+    emit(state.copyWith(status: TaskListStateStatus.loading));
     // await Future.delayed(const Duration(seconds: 1));
 
     await _repository.upsert(task);

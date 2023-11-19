@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/models/task.dart';
 import '../../../../routes.dart';
-import '../../update/todo_update_route.dart';
 import '../controller/controllers.dart';
 
 class TaskCard extends StatefulWidget {

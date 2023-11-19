@@ -1,7 +1,6 @@
 import 'package:adaptative/pages/todo/update/widgets/form_description_widget.dart';
 import 'package:adaptative/pages/todo/update/widgets/form_title_widget.dart';
 import 'package:adaptative/pages/todo/update/widgets/save_widget.dart';
-import 'package:adaptative/pages/todo/update/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,7 +49,7 @@ class _TodoUpdatePageLargeState extends State<TodoUpdatePageLarge> {
       ),
       body: BlocListener<TaskUpdateCubit, TaskState>(
         listener: (context, state) {
-          if (state is TaskStateLoaded) {
+          if (state.status.isLoaded) {
             Navigator.of(context).pop(true);
           }
         },
@@ -68,8 +67,8 @@ class _TodoUpdatePageLargeState extends State<TodoUpdatePageLarge> {
                   const SizedBox(height: 20),
                   BlocBuilder<TaskUpdateCubit, TaskState>(
                     builder: (context, state) {
-                      switch (state) {
-                        case TaskStateInitial():
+                      switch (state.status) {
+                        case TaskStateStatus.initial:
                           return Column(
                             children: [
                               SizedBox(
@@ -91,12 +90,12 @@ class _TodoUpdatePageLargeState extends State<TodoUpdatePageLarge> {
                               ),
                             ],
                           );
-                        case TaskStateLoading():
+                        case TaskStateStatus.loading:
                           return const Center(
                               child: CircularProgressIndicator());
-                        case TaskStateLoaded():
+                        case TaskStateStatus.loaded:
                           return const SizedBox();
-                        case TaskStateError():
+                        case TaskStateStatus.error:
                           return Center(
                             child: Column(
                               children: [

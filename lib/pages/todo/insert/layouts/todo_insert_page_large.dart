@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../list/controller/controllers.dart';
 import '../controller/controllers.dart';
 import '../controller/states.dart';
 import '../widgets/form_description_widget.dart';
@@ -30,7 +29,7 @@ class _TodoInsertPageLargeState extends State<TodoInsertPageLarge> {
   Widget build(BuildContext context) {
     return BlocListener<TaskInsertCubit, TaskState>(
       listener: (context, state) {
-        if (state is TaskStateLoaded) {
+        if (state.status.isLoaded) {
           title.text = '';
           description.text = '';
           Navigator.of(context).pop(true);
@@ -62,8 +61,8 @@ class _TodoInsertPageLargeState extends State<TodoInsertPageLarge> {
                 padding: const EdgeInsets.all(20.0),
                 child: BlocBuilder<TaskInsertCubit, TaskState>(
                   builder: (context, state) {
-                    switch (state) {
-                      case TaskStateInitial():
+                    switch (state.status) {
+                      case TaskStateStatus.initial:
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -80,12 +79,12 @@ class _TodoInsertPageLargeState extends State<TodoInsertPageLarge> {
                             ),
                           ],
                         );
-                      case TaskStateLoading():
+                      case TaskStateStatus.loading:
                         return const Center(child: CircularProgressIndicator());
-                      case TaskStateLoaded():
+                      case TaskStateStatus.loaded:
                         return SaveWidget(
                             title: title, description: description);
-                      case TaskStateError():
+                      case TaskStateStatus.error:
                         return Center(
                             child: Text(state.error ?? 'Oops. Erro sem msg'));
                     }

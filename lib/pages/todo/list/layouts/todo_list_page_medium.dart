@@ -34,14 +34,14 @@ class _TodoListPageMediumState extends State<TodoListPageMedium> {
           Flexible(
             child: BlocBuilder<TaskListController, TaskListState>(
               builder: (context, state) {
-                return switch (state) {
-                  TaskListStateInitial() => const SizedBox(),
-                  TaskListStateLoading() =>
+                return switch (state.status) {
+                  TaskListStateStatus.initial => const SizedBox(),
+                  TaskListStateStatus.loading =>
                     const Center(child: CircularProgressIndicator.adaptive()),
-                  TaskListStateLoaded() => TaskList(
+                  TaskListStateStatus.loaded => TaskList(
                       tasks: state.tasks,
                     ),
-                  TaskListStateError() =>
+                  TaskListStateStatus.error =>
                     Center(child: Text(state.error ?? '')),
                 };
               },

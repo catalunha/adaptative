@@ -1,13 +1,20 @@
-sealed class SplashPageState {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-final class SplashPageStateInitial extends SplashPageState {}
+part 'states.freezed.dart';
 
-final class SplashPageStateLoading extends SplashPageState {}
+enum SplashPageStateStatus { initial, loading, loaded, error }
 
-final class SplashPageStateLoaded extends SplashPageState {}
+@freezed
+class SplashPageState with _$SplashPageState {
+  factory SplashPageState({
+    @Default(SplashPageStateStatus.initial) SplashPageStateStatus status,
+    String? error,
+  }) = _SplashPageState;
+}
 
-final class SplashPageStateError extends SplashPageState {
-  final String? error;
-
-  SplashPageStateError({required this.error});
+extension TaskStateStatusIs on SplashPageStateStatus {
+  bool get isInitial => this == SplashPageStateStatus.initial;
+  bool get isLoading => this == SplashPageStateStatus.loading;
+  bool get isLoaded => this == SplashPageStateStatus.loaded;
+  bool get isError => this == SplashPageStateStatus.error;
 }

@@ -30,7 +30,7 @@ class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
     return Dialog(
       child: BlocListener<TaskInsertCubit, TaskState>(
         listener: (context, state) {
-          if (state is TaskStateLoaded) {
+          if (state.status.isLoaded) {
             Navigator.of(context).pop(true);
           }
         },
@@ -49,8 +49,8 @@ class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
                   const SizedBox(height: 20),
                   BlocBuilder<TaskInsertCubit, TaskState>(
                     builder: (context, state) {
-                      switch (state) {
-                        case TaskStateInitial():
+                      switch (state.status) {
+                        case TaskStateStatus.initial:
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -70,12 +70,12 @@ class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
                               )
                             ],
                           );
-                        case TaskStateLoading():
+                        case TaskStateStatus.loading:
                           return const Center(
                               child: CircularProgressIndicator());
-                        case TaskStateLoaded():
+                        case TaskStateStatus.loaded:
                           return const SizedBox();
-                        case TaskStateError():
+                        case TaskStateStatus.error:
                           return Center(
                               child: Column(
                             children: [
