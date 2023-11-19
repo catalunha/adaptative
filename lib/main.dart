@@ -4,6 +4,7 @@ import 'package:isar/isar.dart';
 import 'package:adaptative/core/isar_db.dart';
 import 'package:provider/provider.dart';
 
+import 'core/app_enviroment/controllers.dart';
 import 'routes.dart';
 
 void main() async {
@@ -22,8 +23,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (context) => isar,
+    return MultiProvider(
+      providers: [
+        Provider(
+          create: (context) => isar,
+        ),
+        Provider(
+          create: (context) => AppEnviromentCubit(),
+        )
+      ],
       child: MaterialApp(
         title: 'Adaptative',
         theme: ThemeData(

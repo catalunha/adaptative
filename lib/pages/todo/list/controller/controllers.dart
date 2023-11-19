@@ -21,7 +21,7 @@ class TaskListController extends Cubit<TaskListState> {
 
     final tasks = await _repository.list();
     emit(state.copyWith(
-      status: TaskListStateStatus.loading,
+      status: TaskListStateStatus.loaded,
       tasks: tasks,
     ));
     log('--- TaskListController.loading');

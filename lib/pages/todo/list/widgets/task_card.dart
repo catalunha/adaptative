@@ -1,10 +1,13 @@
 import 'dart:developer';
 
+import 'package:adaptative/core/app_enviroment/controllers.dart';
+import 'package:adaptative/core/app_enviroment/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/models/task.dart';
 import '../../../../routes.dart';
+import '../../update/todo_update_route.dart';
 import '../controller/controllers.dart';
 
 class TaskCard extends StatefulWidget {
@@ -29,13 +32,31 @@ class _TaskCardState extends State<TaskCard> {
       subtitle: Text(widget.model.description),
       trailing: IconButton(
         onPressed: () async {
-          final isUpdated = await Navigator.of(context)
-                  .pushNamed(RouteName.todoUpdate, arguments: widget.model)
-              as bool?;
-          log('isUpdated: $isUpdated');
-          if (mounted) {
-            if (isUpdated != null && isUpdated) {
-              context.read<TaskListController>().loading();
+          final appEnv = context.read<AppEnviromentCubit>();
+
+          if (appEnv.state.layoutSize.isLarge) {
+            final isUpdated = await Navigator.of(context)
+                    .pushNamed(RouteName.todoUpdate, arguments: widget.model)
+                as bool?;
+            log('isUpdated: $isUpdated');
+            if (mounted) {
+              if (isUpdated != null && isUpdated) {
+                context.read<TaskListController>().loading();
+              }
+            }
+          } else {
+            final isInsert = await showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (context) {
+                return TodoUpdateRoute().page(context, widget.model);
+              },
+            );
+            log('$isInsert');
+            if (mounted) {
+              if (isInsert != null && isInsert) {
+                context.read<TaskListController>().loading();
+              }
             }
           }
         },

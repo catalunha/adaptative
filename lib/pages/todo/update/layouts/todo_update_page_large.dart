@@ -41,7 +41,7 @@ class _TodoUpdatePageLargeState extends State<TodoUpdatePageLarge> {
         title: const Text("ToDo Editar (TodoUpdatePageLarge)"),
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.abc),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop(false);
           },

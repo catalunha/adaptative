@@ -1,6 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../core/app_enviroment/controllers.dart';
+import '../../core/app_enviroment/states.dart';
 
 class Layout extends StatelessWidget {
   final Widget small;
@@ -16,18 +20,24 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appEnv = context.read<AppEnviromentCubit>();
     return Builder(
       builder: (context) {
         log('Layout.build');
         final maxWidth = MediaQuery.of(context).size.width;
         log('mediaWidth: $maxWidth');
-
+        appEnv.setMaxWidth(maxWidth);
         if (maxWidth < 600) {
+          appEnv.setLayoutSize(LayoutSize.small);
           return small;
         }
         if (maxWidth < 900) {
+          appEnv.setLayoutSize(LayoutSize.medium);
+
           return medium;
         }
+        appEnv.setLayoutSize(LayoutSize.large);
+
         return large;
       },
     );
