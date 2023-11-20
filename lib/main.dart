@@ -1,8 +1,6 @@
 import 'package:adaptative/core/hive_db.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:isar/isar.dart';
 
 import 'package:provider/provider.dart';
 
@@ -11,13 +9,17 @@ import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  // final dir = await getApplicationDocumentsDirectory();
+  await Hive.initFlutter();
+  // await Hive.openBox<String>(
+  //   'box',
+  // );
   final hiveDb = HiveDb();
   runApp(MyApp(hiveBox: await hiveDb.initBox()));
 }
 
 class MyApp extends StatelessWidget {
-  final Box hiveBox;
+  final CollectionBox hiveBox;
   const MyApp({
     Key? key,
     required this.hiveBox,

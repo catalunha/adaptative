@@ -17,7 +17,7 @@ class TodoListRoute {
       providers: [
         Provider<TaskRepository>(
           create: (context) => TaskRepositoryImpl(
-            database: context.read<Box>(),
+            database: context.read<CollectionBox>(),
           ),
         ),
         Provider<TaskListController>(

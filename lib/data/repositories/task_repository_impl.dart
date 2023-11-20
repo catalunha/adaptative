@@ -1,16 +1,22 @@
+import 'dart:convert';
+
 import 'package:adaptative/data/models/task.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:isar/isar.dart';
 
 import './task_repository.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
-  final Box database;
+  final CollectionBox database;
 
   TaskRepositoryImpl({required this.database});
   @override
-  List<Task> list() {
-    final tasks = database.values.map((e) => Task.fromJson(e)).toList();
+  Future<List<Task>> list() async {
+    var map = await database.getAllValues();
+    List<Task> tasks = [];
+    for (var value in map.values) {
+      tasks.add(Task.fromJson(Map<String, dynamic>.from(value)));
+    }
+
     tasks.sort(
       (a, b) => a.title.compareTo(b.title),
     );
