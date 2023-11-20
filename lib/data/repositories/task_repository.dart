@@ -1,7 +1,7 @@
 import '../models/task.dart';
 
 abstract interface class TaskRepository {
-  Future<List<Task>> list();
+  List<Task> list();
   Future<bool> upsert(Task task);
-  Future<bool> detele(int id);
+  Future<bool> detele(String id);
 }

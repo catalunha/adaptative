@@ -10,6 +10,9 @@ flutter pub add isar_flutter_libs
 flutter pub add path_provider
 flutter pub add dev:isar_generator
 
+flutter pub add hive
+flutter pub add hive_flutter
+
 flutter pub add freezed_annotation
 flutter pub add dev:freezed
 flutter pub add json_annotation
@@ -17,6 +20,7 @@ flutter pub add dev:json_serializable
 
 flutter pub add dev:build_runner
 
+flutter pub add uuid
 
 
 # Adaptative

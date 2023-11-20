@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:isar/isar.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,7 @@ class TodoInsertRoute {
       providers: [
         Provider<TaskRepository>(
           create: (context) => TaskRepositoryImpl(
-            database: context.read<Isar>(),
+            database: context.read<Box>(),
           ),
         ),
         Provider<TaskInsertCubit>(

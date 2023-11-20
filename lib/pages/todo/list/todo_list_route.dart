@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:adaptative/data/repositories/task_repository.dart';
 import 'package:adaptative/data/repositories/task_repository_impl.dart';
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'controller/controllers.dart';
@@ -17,7 +17,7 @@ class TodoListRoute {
       providers: [
         Provider<TaskRepository>(
           create: (context) => TaskRepositoryImpl(
-            database: context.read<Isar>(),
+            database: context.read<Box>(),
           ),
         ),
         Provider<TaskListController>(

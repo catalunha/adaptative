@@ -27,7 +27,7 @@ class _TaskListState extends State<TaskList> {
         return TaskCard(
           model: item,
           onChanged: (value) {
-            final itemUpdated = item.copyWith(status: value);
+            final itemUpdated = item.copyWith(status: value ?? false);
             controller.update(itemUpdated);
           },
         );

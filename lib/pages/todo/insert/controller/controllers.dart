@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:adaptative/data/models/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../data/repositories/task_repository.dart';
 import 'states.dart';
@@ -43,7 +44,8 @@ class TaskInsertCubit extends Cubit<TaskState> {
     emit(state.copyWith(status: TaskStateStatus.loading));
     await Future.delayed(const Duration(seconds: 1));
     if (title.isNotEmpty) {
-      await _repository.upsert(Task(title: title, description: description));
+      await _repository.upsert(
+          Task(id: const Uuid().v4(), title: title, description: description));
     }
     emit(state.copyWith(status: TaskStateStatus.loaded));
     // emit(TaskStateError(error: 'Algo deu errado'));
