@@ -9,14 +9,14 @@ import '../widgets/form_title_widget.dart';
 import '../widgets/save_widget.dart';
 import '../widgets/title_widget.dart';
 
-class TodoInsertPageMedium extends StatefulWidget {
-  const TodoInsertPageMedium({super.key});
+class TodoInsertMediumComp extends StatefulWidget {
+  const TodoInsertMediumComp({super.key});
 
   @override
-  State<TodoInsertPageMedium> createState() => _TodoInsertPageMediumState();
+  State<TodoInsertMediumComp> createState() => _TodoInsertMediumCompState();
 }
 
-class _TodoInsertPageMediumState extends State<TodoInsertPageMedium> {
+class _TodoInsertMediumCompState extends State<TodoInsertMediumComp> {
   final title = TextEditingController();
   final description = TextEditingController();
   @override

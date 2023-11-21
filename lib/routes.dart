@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'data/models/task.dart';
 import 'pages/home/home_route.dart';
-import 'pages/todo/list/todo_list_route.dart';
-import 'pages/todo/update/todo_update_route.dart';
+import 'pages/todo/list/todo_list.dart';
+import 'pages/todo/update/todo_update.dart';
 
 sealed class Routes {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -17,10 +17,10 @@ sealed class Routes {
         builder = HomeRoute().page;
         break;
       case RouteName.todoList:
-        builder = TodoListRoute().page;
+        builder = TodoListRoute().resource;
         break;
       case RouteName.todoUpdate:
-        builder = (_) => TodoUpdateRoute().page(_, settings.arguments as Task);
+        builder = (_) => TodoUpdate().resource(_, settings.arguments as Task);
         break;
       default:
         throw Exception('Rota não encontrada');

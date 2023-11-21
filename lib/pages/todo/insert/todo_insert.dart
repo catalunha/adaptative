@@ -8,12 +8,12 @@ import '../../../data/repositories/task_repository.dart';
 import '../../../data/repositories/task_repository_impl.dart';
 import '../../utils/layout.dart';
 import 'controller/controllers.dart';
-import 'layouts/todo_insert_page_large.dart';
-import 'layouts/todo_insert_page_medium.dart';
-import 'layouts/todo_insert_page_small.dart';
+import 'layouts/todo_insert_large_comp.dart';
+import 'layouts/todo_insert_medium_comp.dart';
+import 'layouts/todo_insert_small_dialog.dart';
 
-class TodoInsertRoute {
-  Widget page(BuildContext context) {
+class TodoInsert {
+  Widget resource(BuildContext context) {
     log('TodoInsertRoute.page');
 
     return MultiProvider(
@@ -30,9 +30,9 @@ class TodoInsertRoute {
       ],
       builder: (context, child) {
         return const Layout(
-          small: TodoInsertPageSmall(),
-          medium: TodoInsertPageMedium(),
-          large: TodoInsertPageLarge(),
+          small: TodoInsertSmallDialog(),
+          medium: TodoInsertMediumComp(),
+          large: TodoInsertCompLarge(),
         );
       },
     );

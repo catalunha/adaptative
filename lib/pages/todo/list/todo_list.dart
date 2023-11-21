@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/layout.dart';
 import 'controller/controllers.dart';
-import 'todo_list_page.dart';
+import 'layouts/todo_list_large_page.dart';
+import 'layouts/todo_list_medium_page.dart';
+import 'layouts/todo_list_small_page.dart';
 
 class TodoListRoute {
-  Widget page(BuildContext context) {
+  Widget resource(BuildContext context) {
     log('TodoListRoute.page');
 
     return MultiProvider(
@@ -26,7 +29,11 @@ class TodoListRoute {
           ),
         )
       ],
-      builder: (context, child) => const TodoListPage(),
+      builder: (context, child) => const Layout(
+        small: TodoListSmallPage(),
+        medium: TodoListMediumPage(),
+        large: TodoListLargePage(),
+      ),
     );
   }
 }

@@ -7,11 +7,13 @@ import 'package:provider/provider.dart';
 import '../../../data/models/task.dart';
 import '../../../data/repositories/task_repository.dart';
 import '../../../data/repositories/task_repository_impl.dart';
+import '../../utils/layout.dart';
 import 'controller/controllers.dart';
-import 'todo_update_page.dart';
+import 'layouts/todo_update_large_page.dart';
+import 'layouts/todo_update_small_dialog.dart';
 
-class TodoUpdateRoute {
-  Widget page(BuildContext context, Task? task) {
+class TodoUpdate {
+  Widget resource(BuildContext context, Task? task) {
     log('TodoUpdateRoute.page');
 
     return MultiProvider(
@@ -28,7 +30,11 @@ class TodoUpdateRoute {
           ),
         )
       ],
-      builder: (context, child) => const TodoUpdatePage(),
+      builder: (context, child) => const Layout(
+        small: TodoUpdateSmallDialog(),
+        medium: TodoUpdateSmallDialog(),
+        large: TodoUpdateLargePage(),
+      ),
     );
   }
 }
