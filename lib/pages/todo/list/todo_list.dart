@@ -12,8 +12,8 @@ import 'layouts/todo_list_large_page.dart';
 import 'layouts/todo_list_medium_page.dart';
 import 'layouts/todo_list_small_page.dart';
 
-class TodoListRoute {
-  Widget resource(BuildContext context) {
+class TodoList {
+  Widget page(BuildContext context) {
     log('TodoListRoute.page');
 
     return MultiProvider(

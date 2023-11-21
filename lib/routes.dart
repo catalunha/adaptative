@@ -17,7 +17,7 @@ sealed class Routes {
         builder = HomeRoute().page;
         break;
       case RouteName.todoList:
-        builder = TodoListRoute().resource;
+        builder = TodoList().page;
         break;
       case RouteName.todoUpdate:
         builder = (_) => TodoUpdate().resource(_, settings.arguments as Task);
