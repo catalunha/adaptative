@@ -41,13 +41,21 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Task'
+            examples:
+              ex1:
+                summary: Exemplo 1
+                value: {"id": "4b763587-fcc8-4049-8a4c-95810bd2a3b4", "title": "Tarefa 02",  "description": "Tarefa 02 ...",  "status": true}
+              ex2:
+                summary: Exemplo 2
+                externalValue: '/home/catalunha/myapp/adaptative/docs/oas/task.json'
+                # value: {"id": "4b763587-fcc8-4049-8a4c-95810bd2a3b4", "title": "Tarefa 03",  "description": "Tarefa 03 ...",  "status": true}
       responses:
         '200':
           description: Operação bem sucedida
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Task2'
+                $ref: '#/components/schemas/Task'
         '405':
           description: Operação invalida
 
@@ -63,10 +71,10 @@ components:
           example: 4b763587-fcc8-4049-8a4c-95810bd2a3b4
         title:
           type: string
-          example: Tarefa 01 
+          example: Tarefa (comp 1)
         description:
           type: string
-          example: Tarefa 01 ...
+          example: Tarefa ...
         status:
           type: boolean
           example: true
@@ -78,16 +86,18 @@ components:
           example: 4b763587-fcc8-4049-8a4c-95810bd2a3b4
         title:
           type: string
-          example: Tarefa 01 
+          example: Tarefa (comp 2)
         description:
           type: string
-          example: Tarefa 01 ...
-        
-  requestBodies:
-    Task:
-      description: requestBodies ???
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Task'
+          example: Tarefa ...
+        status:
+          type: boolean
+          example: true        
+  # requestBodies:
+  #   Task:
+  #     description: requestBodies ???
+  #     content:
+  #       application/json:
+  #         schema:
+  #           $ref: '#/components/schemas/Task'
 
