@@ -1,0 +1,93 @@
+openapi: '3.0.0'
+info:
+  title: Adaptative Task
+  version: 1.0.0
+  contact:
+    email: catalunha.mj@gmail.com
+# servers:
+#   - url: 
+
+tags:
+  - name: task
+
+paths:
+  /task:
+    get:
+      tags:
+        - task
+      summary: Encontrar todas as tarefas
+      # description: Encontrar todas as tarefas
+      operationId: taskGet
+      responses:
+        '200':
+          description: Leitura bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '403':
+          description: acesso negado
+    post:
+      tags:
+        - task
+      summary: Salva uma Tarefa
+      operationId: taskPost
+      requestBody:
+        description: Criar uma nova tarega
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: Operação bem sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task2'
+        '405':
+          description: Operação invalida
+
+
+
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 4b763587-fcc8-4049-8a4c-95810bd2a3b4
+        title:
+          type: string
+          example: Tarefa 01 
+        description:
+          type: string
+          example: Tarefa 01 ...
+        status:
+          type: boolean
+          example: true
+    Task2:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 4b763587-fcc8-4049-8a4c-95810bd2a3b4
+        title:
+          type: string
+          example: Tarefa 01 
+        description:
+          type: string
+          example: Tarefa 01 ...
+        
+  requestBodies:
+    Task:
+      description: requestBodies ???
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Task'
+
