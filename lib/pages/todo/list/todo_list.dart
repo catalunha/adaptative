@@ -3,13 +3,16 @@ import 'dart:developer';
 import 'package:adaptative/data/repositories/task_repository.dart';
 import 'package:adaptative/data/repositories/task_repository_impl.dart';
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/layout.dart';
 import 'controller/controllers.dart';
-import 'todo_list_page.dart';
+import 'layouts/todo_list_large_page.dart';
+import 'layouts/todo_list_medium_page.dart';
+import 'layouts/todo_list_small_page.dart';
 
-class TodoListRoute {
+class TodoList {
   Widget page(BuildContext context) {
     log('TodoListRoute.page');
 
@@ -17,7 +20,7 @@ class TodoListRoute {
       providers: [
         Provider<TaskRepository>(
           create: (context) => TaskRepositoryImpl(
-            database: context.read<Isar>(),
+            database: context.read<CollectionBox>(),
           ),
         ),
         Provider<TaskListController>(
@@ -26,7 +29,11 @@ class TodoListRoute {
           ),
         )
       ],
-      builder: (context, child) => const TodoListPage(),
+      builder: (context, child) => const Layout(
+        small: TodoListSmallPage(),
+        medium: TodoListMediumPage(),
+        large: TodoListLargePage(),
+      ),
     );
   }
 }

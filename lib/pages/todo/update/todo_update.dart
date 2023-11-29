@@ -1,24 +1,26 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/models/task.dart';
 import '../../../data/repositories/task_repository.dart';
 import '../../../data/repositories/task_repository_impl.dart';
+import '../../utils/layout.dart';
 import 'controller/controllers.dart';
-import 'todo_update_page.dart';
+import 'layouts/todo_update_large_page.dart';
+import 'layouts/todo_update_small_dialog.dart';
 
-class TodoUpdateRoute {
-  Widget page(BuildContext context, Task? task) {
+class TodoUpdate {
+  Widget resource(BuildContext context, Task? task) {
     log('TodoUpdateRoute.page');
 
     return MultiProvider(
       providers: [
         Provider<TaskRepository>(
           create: (context) => TaskRepositoryImpl(
-            database: context.read<Isar>(),
+            database: context.read<CollectionBox>(),
           ),
         ),
         Provider<TaskUpdateCubit>(
@@ -28,7 +30,11 @@ class TodoUpdateRoute {
           ),
         )
       ],
-      builder: (context, child) => const TodoUpdatePage(),
+      builder: (context, child) => const Layout(
+        small: TodoUpdateSmallDialog(),
+        medium: TodoUpdateSmallDialog(),
+        large: TodoUpdateLargePage(),
+      ),
     );
   }
 }

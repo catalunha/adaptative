@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/models/task.dart';
 import '../../../../routes.dart';
-import '../../update/todo_update_route.dart';
+import '../../update/todo_update.dart';
 import '../controller/controllers.dart';
 
 class TaskCard extends StatefulWidget {
@@ -49,7 +49,7 @@ class _TaskCardState extends State<TaskCard> {
               barrierDismissible: false,
               context: context,
               builder: (context) {
-                return TodoUpdateRoute().page(context, widget.model);
+                return TodoUpdate().resource(context, widget.model);
               },
             );
             log('$isInsert');

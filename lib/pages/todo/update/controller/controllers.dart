@@ -34,7 +34,7 @@ class TaskUpdateCubit extends Cubit<TaskState> {
     log('+++ TaskUpdateCubit.delete');
     emit(state.copyWith(status: TaskStateStatus.loading));
     await Future.delayed(const Duration(seconds: 1));
-    await _repository.detele(task!.id!);
+    await _repository.detele(task!.id);
     emit(state.copyWith(status: TaskStateStatus.loaded));
     // emit(TaskStateError(error: 'Algo deu errado'));
     log('--- TaskUpdateCubit.delete');

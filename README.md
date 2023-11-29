@@ -1,16 +1,9 @@
-# adaptative
+# Projeto: Adaptative
 
-A new Flutter project.
+Este é um POC que estou usando para criar layouts adaptativos para Mobile (Small), Tablet (Medium) e Desktop (Large).
 
-## Getting Started
+Para testar você pode executar o app em Desktop (testei apenas no linux) e ir redimensionando a tela que ele vai adaptando o layout em tempo real. 
 
-This project is a starting point for a Flutter application.
+Estou usando BLoC, devido a uma necessidade de um projeto. Mas vou refazer em Riverpod.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Sugestões são bem vindas nas issues.

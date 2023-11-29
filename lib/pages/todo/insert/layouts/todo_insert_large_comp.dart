@@ -6,16 +6,15 @@ import '../controller/states.dart';
 import '../widgets/form_description_widget.dart';
 import '../widgets/form_title_widget.dart';
 import '../widgets/save_widget.dart';
-import '../widgets/title_widget.dart';
 
-class TodoInsertPageLarge extends StatefulWidget {
-  const TodoInsertPageLarge({super.key});
+class TodoInsertCompLarge extends StatefulWidget {
+  const TodoInsertCompLarge({super.key});
 
   @override
-  State<TodoInsertPageLarge> createState() => _TodoInsertPageLargeState();
+  State<TodoInsertCompLarge> createState() => _TodoInsertCompLargeState();
 }
 
-class _TodoInsertPageLargeState extends State<TodoInsertPageLarge> {
+class _TodoInsertCompLargeState extends State<TodoInsertCompLarge> {
   final title = TextEditingController();
   final description = TextEditingController();
   @override
@@ -59,7 +58,7 @@ class _TodoInsertPageLargeState extends State<TodoInsertPageLarge> {
                       mainAxisAlignment: MainAxisAlignment.center,
 
                       children: [
-                        const TitleWidget(),
+                        const Text('ToDo Criar (TodoInsertPageLarge)'),
                         FormTitleWidget(title: title),
                         const SizedBox(height: 20),
                         FormDescriptionWidget(description: description),

@@ -1,7 +1,7 @@
-import 'package:adaptative/core/hive_db.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:isar/isar.dart';
 
+import 'package:adaptative/core/isar_db.dart';
 import 'package:provider/provider.dart';
 
 import 'core/app_enviroment/controllers.dart';
@@ -9,20 +9,16 @@ import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final dir = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter();
-  // await Hive.openBox<String>(
-  //   'box',
-  // );
-  final hiveDb = HiveDb();
-  runApp(MyApp(hiveBox: await hiveDb.initBox()));
+  final isarDb = IsarDb();
+  await isarDb.init();
+  runApp(MyApp(isar: isarDb.database));
 }
 
 class MyApp extends StatelessWidget {
-  final CollectionBox hiveBox;
+  final Isar isar;
   const MyApp({
     Key? key,
-    required this.hiveBox,
+    required this.isar,
   }) : super(key: key);
 
   @override
@@ -30,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider(
-          create: (context) => hiveBox,
+          create: (context) => isar,
         ),
         Provider(
           create: (context) => AppEnviromentCubit(),

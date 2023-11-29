@@ -8,14 +8,14 @@ import '../controller/controllers.dart';
 import '../controller/states.dart';
 import '../widgets/save_widget.dart';
 
-class TodoInsertPageSmall extends StatefulWidget {
-  const TodoInsertPageSmall({super.key});
+class TodoInsertSmallDialog extends StatefulWidget {
+  const TodoInsertSmallDialog({super.key});
 
   @override
-  State<TodoInsertPageSmall> createState() => _TodoInsertPageSmallState();
+  State<TodoInsertSmallDialog> createState() => _TodoInsertSmallDialogState();
 }
 
-class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
+class _TodoInsertSmallDialogState extends State<TodoInsertSmallDialog> {
   final title = TextEditingController();
   final description = TextEditingController();
   @override
@@ -42,7 +42,7 @@ class _TodoInsertPageSmallState extends State<TodoInsertPageSmall> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const TitleWidget(),
+                  const Text('ToDo Criar (TodoInsertPageSmall)'),
                   FormTitleWidget(title: title),
                   const SizedBox(height: 20),
                   FormDescriptionWidget(description: description),
