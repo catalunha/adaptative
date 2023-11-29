@@ -6,4 +6,4 @@ Para testar você pode executar o app em Desktop (testei apenas no linux) e ir r
 
 Estou usando BLoC, devido a uma necessidade de um projeto. Mas vou refazer em Riverpod.
 
-Sugestões são bem vindas nas issues.
+Sugestões são bem vindas nas issues...
